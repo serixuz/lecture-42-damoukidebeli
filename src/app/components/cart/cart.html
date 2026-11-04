@@ -17,15 +17,27 @@
   </div>
 
   <div class="content">
-    <!-- Cart items will be added here later. -->
-    @for (basketItem of basketItems(); track $index) {
-      <p>{{ basketItem.product.name }}</p>
-      <button (click)="removeItem(basketItem.product.id)">Delete</button>
-      <button (click)="changeQuantity(basketItem, -1)">−</button>
-      <span>{{ basketItem.quantity }}</span>
-      <button (click)="changeQuantity(basketItem, 1)">+</button>
+    @for (basketItem of basketItems(); track basketItem.product.id) {
+      <article class="cart-item">
+        <img class="item-image" [src]="basketItem.product.image" [alt]="basketItem.product.name" />
+        <div class="item-details">
+          <h3 class="item-name">{{ basketItem.product.name }}</h3>
+          <p class="item-price">{{ basketItem.product.price | currency:'EUR' }}</p>
+          <div class="item-actions">
+            <div class="quantity" role="group" [attr.aria-label]="'Quantity for ' + basketItem.product.name">
+              <button type="button" aria-label="Decrease quantity" (click)="changeQuantity(basketItem, -1)">&minus;</button>
+              <span aria-live="polite">{{ basketItem.quantity }}</span>
+              <button type="button" aria-label="Increase quantity" (click)="changeQuantity(basketItem, 1)">+</button>
+            </div>
+            <button type="button" class="remove" [attr.aria-label]="'Remove ' + basketItem.product.name" (click)="removeItem(basketItem.product.id)">Remove</button>
+          </div>
+        </div>
+      </article>
     } @empty {
-      <p class="placeholder">Cart is coming soon.</p>
+      <div class="empty-cart">
+        <h3>Your cart is empty</h3>
+        <p class="placeholder">Add something delicious from the menu.</p>
+      </div>
     }
   </div>
 </aside>

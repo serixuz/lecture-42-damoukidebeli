@@ -1,9 +1,11 @@
 import { Component, effect, inject, input, output, signal } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { BasketService } from '../../services/basket.service';
 import { BasketItem } from '../../models/basket.model';
 
 @Component({
   selector: 'app-cart',
+  imports: [CurrencyPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
