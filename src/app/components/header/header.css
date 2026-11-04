@@ -1,0 +1,33 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.cart-btn {
+  padding: 0.5rem 1.1rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cart-btn:hover {
+  background: #fff;
+  color: var(--accent);
+}

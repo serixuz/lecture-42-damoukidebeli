@@ -1,0 +1,108 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #f0ebe3;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  padding: 0.9rem;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-height: 1.4rem;
+}
+
+.tag {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tag-veg {
+  background: #e6f4ea;
+  color: #1e7a37;
+}
+
+.tag-nuts {
+  background: #fff1e0;
+  color: #b45309;
+}
+
+.spice {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.spice-label {
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e3ddd2;
+}
+
+.dot.on {
+  background: var(--accent);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.add {
+  padding: 0.5rem 0.9rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add:hover {
+  background: var(--accent-dark);
+}

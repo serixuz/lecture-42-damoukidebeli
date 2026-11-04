@@ -1,0 +1,50 @@
+<main class="layout">
+  <app-filter-bar [filter]="filter()" (filterChange)="onFilterChange($event)" />
+
+  <section class="content">
+    <div class="categories" role="group" aria-label="Categories">
+      <button
+        type="button"
+        class="chip"
+        [class.active]="filter().categoryId === null"
+        (click)="selectCategory(null)"
+      >
+        All
+      </button>
+      @for (category of categories(); track category.id) {
+        <button
+          type="button"
+          class="chip"
+          [class.active]="filter().categoryId === category.id"
+          (click)="selectCategory(category.id)"
+        >
+          {{ category.name }}
+        </button>
+      }
+    </div>
+
+    @if (loading()) {
+      <p class="message">Loading...</p>
+    } @else if (error()) {
+      <p class="message error">Failed to load products. Please try again.</p>
+    } @else {
+      <div class="grid">
+        @for (product of products() | slice:start():end(); track product.id) {
+          <app-card [product]="product" (addToCart)="addToCart($event)" />
+        } @empty {
+          <p class="message">No products match the selected filters.</p>
+        }
+      </div>
+    }
+  </section>
+</main>
+
+
+<div>
+    <button (click)="pagination(1)">1</button>
+    <button (click)="pagination(2)">2</button>
+</div>
+
+@if (notice(); as message) {
+  <div class="notice" role="status">{{ message }}</div>
+}

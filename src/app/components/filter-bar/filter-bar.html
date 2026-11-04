@@ -1,0 +1,59 @@
+<aside class="filter-bar" aria-label="Filters">
+  <h2 class="title">Filters</h2>
+
+  <fieldset class="group">
+    <legend>Contains nuts</legend>
+    @for (option of options; track option.value) {
+      <label class="radio">
+        <input
+          type="radio"
+          name="nuts"
+          [checked]="toTriState(filter().nuts) === option.value"
+          (change)="setNuts(option.value)"
+        />
+        {{ option.label }}
+      </label>
+    }
+  </fieldset>
+
+  <fieldset class="group">
+    <legend>Vegetarian</legend>
+    @for (option of options; track option.value) {
+      <label class="radio">
+        <input
+          type="radio"
+          name="vegeterian"
+          [checked]="toTriState(filter().vegeterian) === option.value"
+          (change)="setVegeterian(option.value)"
+        />
+        {{ option.label }}
+      </label>
+    }
+  </fieldset>
+
+  <fieldset class="group">
+    <legend>Spiciness: {{ filter().spiciness ?? 'Any' }}</legend>
+    <label class="radio">
+      <input
+        type="checkbox"
+        [checked]="filter().spiciness === null"
+        (change)="toggleAnySpiciness($event)"
+      />
+      Any
+    </label>
+    <input
+      class="range"
+      type="range"
+      min="0"
+      max="4"
+      step="1"
+      aria-label="Spiciness"
+      [value]="filter().spiciness ?? 0"
+      [disabled]="filter().spiciness === null"
+      (input)="setSpiciness($event)"
+    />
+    <div class="scale"><span>0</span><span>4</span></div>
+  </fieldset>
+
+  <button type="button" class="reset" (click)="reset()">Reset all</button>
+</aside>

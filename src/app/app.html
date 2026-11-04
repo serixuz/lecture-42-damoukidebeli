@@ -1,0 +1,4 @@
+<app-header (cartToggle)="cartOpen.set(!cartOpen())" />
+<app-home />
+<app-footer />
+<app-cart [open]="cartOpen()" (closed)="cartOpen.set(false)" />

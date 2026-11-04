@@ -1,0 +1,28 @@
+<article class="card">
+  <img class="image" [src]="product().image" [alt]="product().name" loading="lazy" />
+
+  <div class="body">
+    <h3 class="name">{{ product().name | lowercase }}</h3>
+
+    <div class="tags">
+      @if (product().vegeterian) {
+        <span class="tag tag-veg">Vegetarian</span>
+      }
+      @if (product().nuts) {
+        <span class="tag tag-nuts">Contains nuts</span>
+      }
+    </div>
+
+    <div class="spice" [attr.aria-label]="'Spiciness ' + product().spiciness + ' of 4'">
+      <span class="spice-label">Spiciness</span>
+      @for (level of spiceLevels; track level) {
+        <span class="dot" [class.on]="level <= product().spiciness"></span>
+      }
+    </div>
+
+    <div class="footer">
+      <span class="price">{{ product().price | currency:'EUR' }}</span>
+      <button type="button" class="add" (click)="addToCart.emit(product())">Add to cart</button>
+    </div>
+  </div>
+</article>

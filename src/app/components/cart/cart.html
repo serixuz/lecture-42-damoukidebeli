@@ -1,0 +1,31 @@
+@if (open()) {
+  <div class="overlay" (click)="closed.emit()"></div>
+}
+
+<aside
+  class="drawer"
+  [class.open]="open()"
+  [attr.aria-hidden]="!open()"
+  [attr.inert]="open() ? null : ''"
+  aria-label="Cart"
+>
+  <div class="head">
+    <h2 class="title">Your cart</h2>
+    <button type="button" class="close" aria-label="Close cart" (click)="closed.emit()">
+      &times;
+    </button>
+  </div>
+
+  <div class="content">
+    <!-- Cart items will be added here later. -->
+    @for (basketItem of basketItems(); track $index) {
+      <p>{{ basketItem.product.name }}</p>
+      <button (click)="removeItem(basketItem.product.id)">Delete</button>
+      <button (click)="changeQuantity(basketItem, -1)">−</button>
+      <span>{{ basketItem.quantity }}</span>
+      <button (click)="changeQuantity(basketItem, 1)">+</button>
+    } @empty {
+      <p class="placeholder">Cart is coming soon.</p>
+    }
+  </div>
+</aside>
